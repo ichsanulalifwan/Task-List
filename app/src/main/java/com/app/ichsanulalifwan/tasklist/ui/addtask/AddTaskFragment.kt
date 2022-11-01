@@ -1,4 +1,4 @@
-package com.app.ichsanulalifwan.tasklist
+package com.app.ichsanulalifwan.tasklist.ui.addtask
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.app.ichsanulalifwan.tasklist.R
 import com.app.ichsanulalifwan.tasklist.databinding.FragmentTaskAddBinding
 
 class AddTaskFragment : Fragment() {

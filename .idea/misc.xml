@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.20149688720703127" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.18536288496376815" />
+        <entry key="app/src/main/res/layout/fragment_task_add.xml" value="0.2522833561551744" />
         <entry key="app/src/main/res/layout/fragment_task_list.xml" value="0.267242431640625" />
         <entry key="app/src/main/res/layout/item_task.xml" value="0.4785446166992188" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.1" />

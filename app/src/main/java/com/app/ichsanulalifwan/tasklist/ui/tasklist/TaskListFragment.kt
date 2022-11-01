@@ -1,4 +1,4 @@
-package com.app.ichsanulalifwan.tasklist
+package com.app.ichsanulalifwan.tasklist.ui.tasklist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.ichsanulalifwan.tasklist.R
 import com.app.ichsanulalifwan.tasklist.databinding.FragmentTaskListBinding
 
 class TaskListFragment : Fragment() {
