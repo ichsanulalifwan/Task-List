@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(tableName = "task_entities")
-data class Task(
+data class TaskEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
