@@ -14,10 +14,10 @@ interface TaskDao {
     suspend fun insertTask(task: TaskEntity)
 
     @Update
-    fun updateTask(task: TaskEntity)
+    suspend fun updateTask(task: TaskEntity)
 
     @Update
-    fun updateAllTask(task: List<TaskEntity>)
+    suspend fun updateAllTask(task: List<TaskEntity>)
 
 //    @Query("Delete FROM task_entities where done = 1")
 //    fun deleteDoneTask(): LiveData<List<TaskEntity>>
