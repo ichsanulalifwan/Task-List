@@ -19,6 +19,6 @@ interface TaskDao {
     @Update
     fun updateAllTask(task: List<TaskEntity>)
 
-    @Query("Delete FROM task_entities where done = 1")
-    fun deleteDoneTask(): LiveData<List<TaskEntity>>
+//    @Query("Delete FROM task_entities where done = 1")
+//    fun deleteDoneTask(): LiveData<List<TaskEntity>>
 }

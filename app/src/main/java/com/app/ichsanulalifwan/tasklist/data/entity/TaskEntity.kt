@@ -4,7 +4,6 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "task_entities")
 data class TaskEntity(
@@ -17,7 +16,7 @@ data class TaskEntity(
     var text: String,
 
     @ColumnInfo(name = "date")
-    var date: Date,
+    var date: String,
 
     @ColumnInfo(name = "order")
     var order: Int,
