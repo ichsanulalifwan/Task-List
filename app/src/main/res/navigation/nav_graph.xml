@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.app.ichsanulalifwan.tasklist.SecondFragment"
+        android:name="com.app.ichsanulalifwan.tasklist.AddTaskFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_task_add">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
