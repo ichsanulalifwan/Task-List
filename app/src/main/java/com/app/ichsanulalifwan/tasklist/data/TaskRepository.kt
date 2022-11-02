@@ -9,10 +9,8 @@ import kotlinx.coroutines.runBlocking
 
 class TaskRepository(private val taskDao: TaskDao) {
 
-    private var taskList: LiveData<List<TaskEntity>>? = taskDao.getALlTask()
-
-    fun getTaskList(): LiveData<List<TaskEntity>>? {
-        return taskList
+    fun getTaskList(): LiveData<List<TaskEntity>> {
+        return taskDao.getALlTask()
     }
 
     fun insert(task: TaskEntity) = runBlocking {

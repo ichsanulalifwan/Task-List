@@ -18,7 +18,7 @@ data class TaskEntity(
     var date: Long,
 
     @ColumnInfo(name = "order")
-    var order: Int? = null,
+    var order: Int = 0,
 
     @ColumnInfo(name = "done")
     var done: Boolean = false
