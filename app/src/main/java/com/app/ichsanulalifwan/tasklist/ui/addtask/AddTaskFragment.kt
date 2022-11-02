@@ -118,15 +118,12 @@ class AddTaskFragment : Fragment() {
         }
     }
 
-    private fun populateData(): TaskEntity {
-        val id = (if (task != null) task?.id else null)
-        return TaskEntity(
-            id,
-            binding.edAddTask.text.toString(),
-            selectedDate,
-            id
-        )
-    }
+    private fun populateData(): TaskEntity = TaskEntity(
+        (if (task != null) task?.id else null),
+        binding.edAddTask.text.toString(),
+        selectedDate,
+        0
+    )
 
     private fun checkInputChanged() {
         binding.run {
