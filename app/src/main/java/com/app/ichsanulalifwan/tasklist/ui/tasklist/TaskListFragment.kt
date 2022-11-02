@@ -27,7 +27,7 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         setupRecyclerView()
-        showLoading(true)
+//        showLoading(true)
     }
 
     private fun initView() {

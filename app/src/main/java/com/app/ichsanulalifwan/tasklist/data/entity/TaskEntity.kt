@@ -7,19 +7,18 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "task_entities")
 data class TaskEntity(
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: Int? = null,
 
     @ColumnInfo(name = "text")
     var text: String,
 
     @ColumnInfo(name = "date")
-    var date: String,
+    var date: Long,
 
     @ColumnInfo(name = "order")
-    var order: Int,
+    var order: Int? = null,
 
     @ColumnInfo(name = "done")
     var done: Boolean = false

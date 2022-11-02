@@ -11,4 +11,7 @@
     <string name="text_hint_task_name">Task to do</string>
     <string name="text_btn_save">Save</string>
     <string name="text_due_date">Date</string>
+    <string name="error_empty_data">Data can\'t be empty</string>
+    <string name="error_empty_date">Please choose your date</string>
+    <string name="empty_data_message">Please input your data</string>
 </resources>
