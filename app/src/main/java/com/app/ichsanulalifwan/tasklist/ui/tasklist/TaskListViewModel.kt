@@ -9,13 +9,17 @@ import com.app.ichsanulalifwan.tasklist.data.entity.TaskEntity
 class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
 
     private val updateStatus = MutableLiveData<Boolean>()
+    private val deleteStatus = MutableLiveData<Boolean>()
 
     val observableEditStatus: LiveData<Boolean>
         get() = updateStatus
 
+    val observableDeleteStatus: LiveData<Boolean>
+        get() = deleteStatus
+
     fun getAllTask(): LiveData<List<TaskEntity>> = repository.getTaskList()
 
-    fun updateTodo(task: TaskEntity) {
+    fun updateTask(task: TaskEntity) {
         updateStatus.value = try {
             repository.update(task)
             true
@@ -27,6 +31,15 @@ class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
     fun updateAllTask(taskList: List<TaskEntity>) {
         updateStatus.value = try {
             repository.updateAll(taskList)
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        }
+    }
+
+    fun deleteCompletedTask() {
+        deleteStatus.value = try {
+            repository.deleteCompletedTask()
             true
         } catch (e: IllegalArgumentException) {
             false

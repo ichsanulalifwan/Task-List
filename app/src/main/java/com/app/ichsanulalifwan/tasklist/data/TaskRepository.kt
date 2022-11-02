@@ -31,13 +31,12 @@ class TaskRepository(private val taskDao: TaskDao) {
         }
     }
 
-//    fun delete(task: TaskEntity) {
-//        runBlocking {
-//            this.launch(Dispatchers.IO) {
-//                taskDao.deleteTask(task)
-//            }
-//        }
-//    }
+    fun deleteCompletedTask() = runBlocking {
+        this.launch(Dispatchers.IO) {
+            taskDao.deleteCompletedTask()
+        }
+    }
+
 
     companion object {
         @Volatile
