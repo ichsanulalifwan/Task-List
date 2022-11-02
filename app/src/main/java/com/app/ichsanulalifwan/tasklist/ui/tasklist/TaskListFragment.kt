@@ -15,6 +15,7 @@ import com.app.ichsanulalifwan.tasklist.databinding.FragmentTaskListBinding
 import com.app.ichsanulalifwan.tasklist.ui.adapter.TaskAdapter
 import com.app.ichsanulalifwan.tasklist.viewmodel.ViewModelFactory
 
+
 class TaskListFragment : Fragment() {
 
     private lateinit var viewModel: TaskListViewModel
@@ -22,6 +23,7 @@ class TaskListFragment : Fragment() {
     private var _binding: FragmentTaskListBinding? = null
     private val binding get() = _binding!!
     private var countItemLeft = 0
+    private var completedItems = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +42,7 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // init adapter
-        taskAdapter = TaskAdapter()
+        taskAdapter = TaskAdapter(requireContext(), viewModel, viewLifecycleOwner)
 
         initView()
         setupRecyclerView()
@@ -49,8 +51,15 @@ class TaskListFragment : Fragment() {
     }
 
     private fun initView() {
-        binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.run {
+            fab.setOnClickListener {
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                uncheck()
+            }
+            btnClearTask.setOnClickListener {
+                showLoading(true)
+                deleteCompletedTask()
+            }
         }
     }
 
@@ -60,15 +69,21 @@ class TaskListFragment : Fragment() {
             adapter = taskAdapter
             setHasFixedSize(true)
         }
-//        taskAdapter.setData(dataDummy())
     }
 
     private fun initData() {
         viewModel.getAllTask().observe(viewLifecycleOwner) { tasks ->
             tasks?.let {
+                countItemLeft = 0
+                completedItems = 0
                 showLoading(false)
-                if (tasks.isEmpty()) showEmptyState()
-                else taskAdapter.setData(tasks)
+
+                // check if data is empty
+                if (tasks.isEmpty()) {
+                    showEmptyState()
+                    taskAdapter.clear()
+                } else taskAdapter.setData(tasks)
+
                 checkTask(tasks)
                 markAllComplete(tasks)
             } ?: showEmptyState()
@@ -76,7 +91,6 @@ class TaskListFragment : Fragment() {
     }
 
     private fun checkTask(tasks: List<TaskEntity>) {
-        var completedItems = 0
         tasks.forEach { taskEntity ->
             if (taskEntity.done) completedItems += 1
             else countItemLeft += 1
@@ -117,6 +131,17 @@ class TaskListFragment : Fragment() {
         }
     }
 
+    private fun deleteCompletedTask() {
+        viewModel.apply {
+            deleteCompletedTask()
+            observableDeleteStatus.observe(viewLifecycleOwner) {
+                showLoading(false)
+                showToast("All complete tasks have been deleted")
+                uncheck()
+            }
+        }
+    }
+
     private fun showLoading(state: Boolean) {
         if (state) binding.progressBar.visibility = View.VISIBLE
         else binding.progressBar.visibility = View.GONE
@@ -128,6 +153,10 @@ class TaskListFragment : Fragment() {
 
     private fun showEmptyState() {
         binding.emptyText.visibility = View.VISIBLE
+    }
+
+    private fun uncheck() {
+        binding.checkForAll.isChecked = false
     }
 
     override fun onDestroyView() {
