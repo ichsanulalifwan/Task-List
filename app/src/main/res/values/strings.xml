@@ -14,4 +14,5 @@
     <string name="error_empty_data">Data can\'t be empty</string>
     <string name="error_empty_date">Please choose your date</string>
     <string name="empty_data_message">Please input your data</string>
+    <string name="empty_list">There is no task</string>
 </resources>

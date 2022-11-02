@@ -8,15 +8,12 @@ import com.app.ichsanulalifwan.tasklist.data.entity.TaskEntity
 
 class TaskListViewModel(private val repository: TaskRepository) : ViewModel() {
 
-    private val taskList: LiveData<List<TaskEntity>>? = repository.getTaskList()
     private val updateStatus = MutableLiveData<Boolean>()
 
     val observableEditStatus: LiveData<Boolean>
         get() = updateStatus
 
-    fun getAllTask(): LiveData<List<TaskEntity>>? {
-        return taskList
-    }
+    fun getAllTask(): LiveData<List<TaskEntity>> = repository.getTaskList()
 
     fun updateTodo(task: TaskEntity) {
         updateStatus.value = try {

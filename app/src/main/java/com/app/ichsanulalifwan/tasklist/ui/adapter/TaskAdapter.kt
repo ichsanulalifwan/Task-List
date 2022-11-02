@@ -10,7 +10,6 @@ import com.app.ichsanulalifwan.tasklist.utils.Utils
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.Holder>() {
 
-    private var onItemClickCallback: OnItemClickCallback? = null
     private var listTask = ArrayList<TaskEntity>()
 
     fun setData(tasks: List<TaskEntity>) {
@@ -19,10 +18,6 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.Holder>() {
         }
         listTask.addAll(tasks)
         notifyDataSetChanged()
-    }
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -43,16 +38,11 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.Holder>() {
             tvDate.text = Utils.dateFormatter(task.date)
             checkDone.isChecked = task.done
 
+//            checkDone.setOnCheckedChangeListener()
+
             if (task.done) {
                 tvText.paintFlags = tvText.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             }
-            itemView.setOnClickListener {
-                onItemClickCallback?.onItemClicked(task)
-            }
         }
-    }
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: TaskEntity)
     }
 }
